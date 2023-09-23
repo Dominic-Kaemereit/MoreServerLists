@@ -1,5 +1,6 @@
 package de.d151l.moreserverlists.mixin;
 
+import de.d151l.moreserverlists.MoreServerListsModClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
@@ -17,7 +18,7 @@ public class MultiplayerScreenMixin extends Screen {
     private Text title;
 
     private final int arrowWidth = 20;
-    private final int listNameWidth = 100;
+    private final int listNameWidth = 130;
     private final int spaceBetweenListNameAndArrow = 5;
     private final int spaceBetweenWindowAndBar = 5;
 
@@ -38,16 +39,19 @@ public class MultiplayerScreenMixin extends Screen {
         int start = center - centerBar;
 
         final ButtonWidget arrowLeft = ButtonWidget.builder(Text.of("«"), (buttonWidget) -> {
+            MoreServerListsModClient.getInstance().getServerListHandler().previousServerList();
 
             MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
         }).width(this.arrowWidth).position(start, this.spaceBetweenWindowAndBar).build();
 
-        final ButtonWidget listName = ButtonWidget.builder(Text.of("Server List 1"), (buttonWidget) -> {
+        final String currentServerListName = MoreServerListsModClient.getInstance().getServerListHandler().getCurrentServerListName();
+        final ButtonWidget listName = ButtonWidget.builder(Text.of(currentServerListName), (buttonWidget) -> {
 
             MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
         }).width(this.listNameWidth).position(arrowLeft.getX() + arrowLeft.getWidth() + this.spaceBetweenListNameAndArrow, arrowLeft.getY()).build();
 
         final ButtonWidget arrowRight = ButtonWidget.builder(Text.of("»"), (buttonWidget) -> {
+            MoreServerListsModClient.getInstance().getServerListHandler().nextServerList();
 
             MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
         }).width(this.arrowWidth).position(listName.getX() + listName.getWidth() + this.spaceBetweenListNameAndArrow, listName.getY()).build();

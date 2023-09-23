@@ -1,5 +1,6 @@
 package de.d151l.moreserverlists;
 
+import de.d151l.moreserverlists.handler.ServerListHandler;
 import net.fabricmc.api.ClientModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,8 @@ public class MoreServerListsModClient implements ClientModInitializer {
 
     private static MoreServerListsModClient instance;
 
+    private final ServerListHandler serverListHandler = new ServerListHandler(this);
+
     @Override
     public void onInitializeClient() {
         instance = this;
@@ -19,5 +22,9 @@ public class MoreServerListsModClient implements ClientModInitializer {
 
     public static MoreServerListsModClient getInstance() {
         return instance;
+    }
+
+    public ServerListHandler getServerListHandler() {
+        return serverListHandler;
     }
 }
