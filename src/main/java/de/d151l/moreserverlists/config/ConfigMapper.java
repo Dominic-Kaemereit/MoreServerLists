@@ -34,7 +34,7 @@ public class ConfigMapper {
             fileWriter.flush();
             fileWriter.close();
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 

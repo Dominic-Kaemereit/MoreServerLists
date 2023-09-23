@@ -1,6 +1,7 @@
 package de.d151l.moreserverlists.mixin;
 
 import de.d151l.moreserverlists.MoreServerListsModClient;
+import de.d151l.moreserverlists.screen.ConfigScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
@@ -47,6 +48,8 @@ public class MultiplayerScreenMixin extends Screen {
         final String currentServerListName = MoreServerListsModClient.getInstance().getServerListHandler().getCurrentServerListName();
         final ButtonWidget listName = ButtonWidget.builder(Text.of(currentServerListName), (buttonWidget) -> {
 
+            final ConfigScreen configScreen = new ConfigScreen(MultiplayerScreenMixin.this);
+            MinecraftClient.getInstance().setScreen(configScreen);
         }).width(this.listNameWidth).position(arrowLeft.getX() + arrowLeft.getWidth() + this.spaceBetweenListNameAndArrow, arrowLeft.getY()).build();
 
         final ButtonWidget arrowRight = ButtonWidget.builder(Text.of("»"), (buttonWidget) -> {

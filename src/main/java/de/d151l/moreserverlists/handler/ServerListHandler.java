@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class ServerListHandler {
 
@@ -35,7 +36,44 @@ public class ServerListHandler {
         }
     }
 
+    public void saveConfig() {
+        MoreServerListsModClient.LOGGER.info("Saving config");
+
+        try {
+            new ConfigMapper().writeJson(new File("."), "moreserverlists.json", MoreServerListsDatarConfig.getInstance());
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
     public void addServerList(String key, String name) {
+        if (key == null || key.isEmpty()) {
+            return;
+        }
+
+        if (name == null || name.isEmpty()) {
+            return;
+        }
+
+        if (this.getServerLists().containsKey(key)) {
+            return;
+        }
+
+        key = key.toLowerCase();
+        key = key.replaceAll("[^a-z0-9]", "");
+
+        this.serverLists.put(key, name);
+    }
+
+    public void updateServerList(String key, String name) {
+        if (key == null || key.isEmpty()) {
+            return;
+        }
+
+        if (name == null || name.isEmpty()) {
+            return;
+        }
+
         this.serverLists.put(key, name);
     }
 
@@ -101,5 +139,9 @@ public class ServerListHandler {
         }
 
         return this.serverLists.get(this.currentServerList);
+    }
+
+    public Map<String, String> getServerLists() {
+        return serverLists;
     }
 }
