@@ -3,6 +3,7 @@
   "package": "de.d151l.moreserverlists.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "MultiplayerScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

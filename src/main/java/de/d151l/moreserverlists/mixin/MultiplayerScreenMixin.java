@@ -1,0 +1,59 @@
+package de.d151l.moreserverlists.mixin;
+
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.text.Text;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(MultiplayerScreen.class)
+public class MultiplayerScreenMixin extends Screen {
+
+    private Screen parent;
+    private Text title;
+
+    private final int arrowWidth = 20;
+    private final int listNameWidth = 100;
+    private final int spaceBetweenListNameAndArrow = 5;
+    private final int spaceBetweenWindowAndBar = 5;
+
+    protected MultiplayerScreenMixin(Text title) {
+        super(title);
+    }
+
+    @Inject(method = "init", at = @At("HEAD"))
+    private void init(CallbackInfo info) {
+        this.title = Text.of(" ");
+
+        final int screenWidth = this.width;
+        final int center = screenWidth / 2;
+
+        final int barWidth = this.arrowWidth + this.spaceBetweenListNameAndArrow + this.listNameWidth + this.spaceBetweenListNameAndArrow + this.arrowWidth;
+        final int centerBar = barWidth / 2;
+
+        int start = center - centerBar;
+
+        final ButtonWidget arrowLeft = ButtonWidget.builder(Text.of("«"), (buttonWidget) -> {
+
+            MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
+        }).width(this.arrowWidth).position(start, this.spaceBetweenWindowAndBar).build();
+
+        final ButtonWidget listName = ButtonWidget.builder(Text.of("Server List 1"), (buttonWidget) -> {
+
+            MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
+        }).width(this.listNameWidth).position(arrowLeft.getX() + arrowLeft.getWidth() + this.spaceBetweenListNameAndArrow, arrowLeft.getY()).build();
+
+        final ButtonWidget arrowRight = ButtonWidget.builder(Text.of("»"), (buttonWidget) -> {
+
+            MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
+        }).width(this.arrowWidth).position(listName.getX() + listName.getWidth() + this.spaceBetweenListNameAndArrow, listName.getY()).build();
+
+        this.addDrawableChild(arrowLeft);
+        this.addDrawableChild(listName);
+        this.addDrawableChild(arrowRight);
+    }
+}
