@@ -1,7 +1,6 @@
 package de.d151l.moreserverlists.mixin;
 
 import de.d151l.moreserverlists.MoreServerListsModClient;
-import eu.midnightdust.lib.config.MidnightConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;

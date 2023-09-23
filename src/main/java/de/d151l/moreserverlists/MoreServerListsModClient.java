@@ -1,7 +1,6 @@
 package de.d151l.moreserverlists;
 
 import de.d151l.moreserverlists.handler.ServerListHandler;
-import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ClientModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
