@@ -11,11 +11,13 @@ public class MoreServerListsModClient implements ClientModInitializer {
 
     private static MoreServerListsModClient instance;
 
-    private final ServerListHandler serverListHandler = new ServerListHandler(this);
+    private ServerListHandler serverListHandler;
 
     @Override
     public void onInitializeClient() {
         instance = this;
+
+        this.serverListHandler = new ServerListHandler(this);
 
         LOGGER.info("MoreServerListsModClient initialized");
     }
