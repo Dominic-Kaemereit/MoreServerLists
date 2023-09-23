@@ -1,31 +1,27 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "moreserverlists",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "More Server Lists",
+	"description": "This mod adds more server lists to the multiplayer menu. You can easily switch between them using the buttons on the left side of the screen.",
 	"authors": [
-		"Me!"
+		"D151l"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/D151l/MoreServerLists",
+		"issues": "https://github.com/D151l/MoreServerLists/issues"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/moreserverlists/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"com.example.ExampleMod"
-		],
 		"client": [
-			"com.example.ExampleModClient"
+			"de.d151l.moreserverlists.MoreServerListsModClient"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "moreserverlists.client.mixins.json",
 			"environment": "client"
 		}
 	],
@@ -36,6 +32,5 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
 	}
 }
