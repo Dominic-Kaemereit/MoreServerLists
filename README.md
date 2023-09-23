@@ -1,9 +1,11 @@
-# Fabric Example Mod
+# WIP - Work in progress
 
-## Setup
+The project is still under development, but it is already possible to use it. The documentation is still in progress. If you have any questions, please contact me.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+---
 
-## License
+# More Server Lists (Fabric Mod)
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This mod allows you to add more server lists to the game. You can add as many server lists as you want. You can also add servers to the default server list.
+
+[![Requires Fabric API](https://i.imgur.com/Ol1Tcf8.png)](https://modrinth.com/mod/fabric-api)
