@@ -12,8 +12,6 @@ import java.nio.file.Files;
 
 public class ConfigHandler {
 
-    private final MoreServerListsModClient mod;
-
     private MoreServerListsDatarConfig config;
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -22,8 +20,8 @@ public class ConfigHandler {
     private final File configDir = new File("config/");
 
 
-    public ConfigHandler(final MoreServerListsModClient mod) {
-        this.mod = mod;
+    public ConfigHandler() {
+
     }
 
     public void loadConfig() {
@@ -34,7 +32,10 @@ public class ConfigHandler {
             MoreServerListsModClient.LOGGER.info("Config file not found, creating new one...");
             this.config = new MoreServerListsDatarConfig();
             this.config.getServerLists().put("servers", "Default Server List");
-            file.getParentFile().mkdirs();
+
+            final boolean mkdirs = file.getParentFile().mkdirs();
+            MoreServerListsModClient.LOGGER.info("mkdirs: " + mkdirs);
+
             this.saveConfig();
             return;
         }
@@ -57,8 +58,8 @@ public class ConfigHandler {
             fileWriter.write(this.gson.toJson(this.config));
             fileWriter.flush();
             fileWriter.close();
-        } catch (IOException e) {
-            MoreServerListsModClient.LOGGER.error("Failed to save config!", e);
+        } catch (IOException exception) {
+            MoreServerListsModClient.LOGGER.error("Failed to save config!", exception);
         }
         MoreServerListsModClient.LOGGER.info("Config saved!");
     }

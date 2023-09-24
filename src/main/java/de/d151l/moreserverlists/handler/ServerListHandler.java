@@ -1,14 +1,9 @@
 package de.d151l.moreserverlists.handler;
 
 import de.d151l.moreserverlists.MoreServerListsModClient;
-import de.d151l.moreserverlists.config.ConfigMapper;
-import de.d151l.moreserverlists.config.MoreServerListsDatarConfig;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class ServerListHandler {
 
@@ -21,33 +16,6 @@ public class ServerListHandler {
     public ServerListHandler(final MoreServerListsModClient mod) {
         this.mod = mod;
     }
-
-    /*public void loadConfig() {
-        MoreServerListsModClient.LOGGER.info("Loading config");
-        try {
-            MoreServerListsDatarConfig.setInstance(
-                    new ConfigMapper().getOrCreate(new File("."), "moreserverlists.json", new MoreServerListsDatarConfig(), MoreServerListsDatarConfig.class)
-            );
-
-            this.serverLists.putAll(MoreServerListsDatarConfig.getInstance().getServerLists());
-            this.currentServerList = (String) this.serverLists.keySet().toArray()[0];
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-    }*/
-
-    /*public void saveConfig() {
-        MoreServerListsModClient.LOGGER.info("Saving config");
-
-        try {
-            boolean delete = new File("moreserverlists.json").delete();
-            MoreServerListsModClient.LOGGER.info("Deleted old config: " + delete);
-            new ConfigMapper().getOrCreate(new File("."), "moreserverlists.json", MoreServerListsDatarConfig.getInstance(), MoreServerListsDatarConfig.class);
-        } catch (IOException exception) {
-            MoreServerListsModClient.LOGGER.error("Failed to save config");
-            exception.printStackTrace();
-        }
-    }*/
 
     public void loadConfig() {
         this.mod.getConfigHandler().loadConfig();

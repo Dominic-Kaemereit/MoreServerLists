@@ -19,7 +19,7 @@ public class MoreServerListsModClient implements ClientModInitializer {
     public void onInitializeClient() {
         instance = this;
 
-        this.configHandler = new ConfigHandler(this);
+        this.configHandler = new ConfigHandler();
         this.serverListHandler = new ServerListHandler(this);
 
         this.serverListHandler.loadConfig();

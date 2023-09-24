@@ -24,7 +24,7 @@ public class ServerListMixin {
     private final List<ServerInfo> servers = Lists.newArrayList();
     private final List<ServerInfo> hiddenServers = Lists.newArrayList();
 
-    public ServerListMixin(MinecraftClient client) {
+    public ServerListMixin(final MinecraftClient client) {
         this.client = client;
     }
 

@@ -23,7 +23,7 @@ public class MultiplayerScreenMixin extends Screen {
     private final int spaceBetweenListNameAndArrow = 5;
     private final int spaceBetweenWindowAndBar = 5;
 
-    protected MultiplayerScreenMixin(Text title) {
+    protected MultiplayerScreenMixin(final Text title) {
         super(title);
     }
 

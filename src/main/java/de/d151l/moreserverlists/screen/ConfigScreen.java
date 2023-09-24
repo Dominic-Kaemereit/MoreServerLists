@@ -14,7 +14,7 @@ public class ConfigScreen extends Screen {
 
     private final Screen parent;
 
-    public ConfigScreen(Screen parent) {
+    public ConfigScreen(final Screen parent) {
         super(Text.of("MoreServerLists Config"));
         this.parent = parent;
     }
@@ -50,7 +50,7 @@ public class ConfigScreen extends Screen {
 
 
         final int addServerListHeight = startHeight.get() + 50;
-        //feals (key, name) and button
+
         final TextFieldWidget addListKey = new TextFieldWidget(this.textRenderer, (this.width / 2) - 205, addServerListHeight, 200, 20, Text.of(""));
         addListKey.setMaxLength(8);
         addListKey.setPlaceholder(Text.of("Key"));
