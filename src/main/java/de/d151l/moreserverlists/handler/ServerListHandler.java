@@ -63,6 +63,10 @@ public class ServerListHandler {
 
     public void removeServerList(String key) {
         this.serverLists.remove(key);
+
+        if (this.currentServerList.equals(key)) {
+            this.currentServerList = "servers";
+        }
     }
 
     public void nextServerList() {

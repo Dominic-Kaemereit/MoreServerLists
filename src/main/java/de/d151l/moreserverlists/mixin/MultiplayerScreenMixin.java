@@ -48,7 +48,7 @@ public class MultiplayerScreenMixin extends Screen {
         final String currentServerListName = MoreServerListsModClient.getInstance().getServerListHandler().getCurrentServerListName();
         final ButtonWidget listName = ButtonWidget.builder(Text.of(currentServerListName), (buttonWidget) -> {
 
-            final ConfigScreen configScreen = new ConfigScreen(MultiplayerScreenMixin.this);
+            final ConfigScreen configScreen = new ConfigScreen(parent);
             MinecraftClient.getInstance().setScreen(configScreen);
         }).width(this.listNameWidth).position(arrowLeft.getX() + arrowLeft.getWidth() + this.spaceBetweenListNameAndArrow, arrowLeft.getY()).build();
 

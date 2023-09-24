@@ -3,6 +3,7 @@ package de.d151l.moreserverlists.screen;
 import de.d151l.moreserverlists.MoreServerListsModClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.TextWidget;
@@ -70,7 +71,7 @@ public class ConfigScreen extends Screen {
 
         final ButtonWidget doneButton = ButtonWidget.builder(Text.of("Save & Done"), (buttonWidget) -> {
             MoreServerListsModClient.getInstance().getServerListHandler().saveConfig();
-            MinecraftClient.getInstance().setScreen(parent);
+            MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
         }).width(160).position(center - 80, this.height - 32).build();
 
         this.addDrawableChild(doneButton);
