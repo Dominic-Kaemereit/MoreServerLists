@@ -14,7 +14,7 @@ public class ServerListHandler {
 
     private final MoreServerListsModClient mod;
 
-    private String currentServerList = null;
+    private String currentServerList = "servers";
 
     private final Map<String, String> serverLists = new HashMap<>();
 
@@ -22,7 +22,7 @@ public class ServerListHandler {
         this.mod = mod;
     }
 
-    public void loadConfig() {
+    /*public void loadConfig() {
         MoreServerListsModClient.LOGGER.info("Loading config");
         try {
             MoreServerListsDatarConfig.setInstance(
@@ -34,16 +34,32 @@ public class ServerListHandler {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }
+    }*/
 
-    public void saveConfig() {
+    /*public void saveConfig() {
         MoreServerListsModClient.LOGGER.info("Saving config");
 
         try {
-            new ConfigMapper().writeJson(new File("."), "moreserverlists.json", MoreServerListsDatarConfig.getInstance());
+            boolean delete = new File("moreserverlists.json").delete();
+            MoreServerListsModClient.LOGGER.info("Deleted old config: " + delete);
+            new ConfigMapper().getOrCreate(new File("."), "moreserverlists.json", MoreServerListsDatarConfig.getInstance(), MoreServerListsDatarConfig.class);
         } catch (IOException exception) {
-            throw new RuntimeException(exception);
+            MoreServerListsModClient.LOGGER.error("Failed to save config");
+            exception.printStackTrace();
         }
+    }*/
+
+    public void loadConfig() {
+        this.mod.getConfigHandler().loadConfig();
+
+        this.serverLists.putAll(this.mod.getConfigHandler().getConfig().getServerLists());
+    }
+
+    public void saveConfig() {
+        this.mod.getConfigHandler().getConfig().getServerLists().clear();
+        this.mod.getConfigHandler().getConfig().getServerLists().putAll(this.serverLists);
+
+        this.mod.getConfigHandler().saveConfig();
     }
 
     public void addServerList(String key, String name) {
@@ -82,11 +98,6 @@ public class ServerListHandler {
     }
 
     public void nextServerList() {
-        if (this.currentServerList == null) {
-            this.loadConfig();
-            return;
-        }
-
         int index = 0;
         for (String key : this.serverLists.keySet()) {
             if (key.equals(this.currentServerList)) {
@@ -104,11 +115,6 @@ public class ServerListHandler {
     }
 
     public void previousServerList() {
-        if (this.currentServerList == null) {
-            this.loadConfig();
-            return;
-        }
-
         int index = 0;
         for (String key : this.serverLists.keySet()) {
             if (key.equals(this.currentServerList)) {
@@ -126,18 +132,10 @@ public class ServerListHandler {
     }
 
     public String getCurrentServerList() {
-        if (this.currentServerList == null) {
-            this.loadConfig();
-        }
-
         return currentServerList;
     }
 
     public String getCurrentServerListName() {
-        if (this.currentServerList == null) {
-            this.loadConfig();
-        }
-
         return this.serverLists.get(this.currentServerList);
     }
 
