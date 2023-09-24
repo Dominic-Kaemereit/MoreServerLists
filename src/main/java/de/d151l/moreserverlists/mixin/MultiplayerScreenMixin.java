@@ -27,7 +27,7 @@ public class MultiplayerScreenMixin extends Screen {
         super(title);
     }
 
-    @Inject(method = "init", at = @At("HEAD"))
+    @Inject(method = "init", at = @At("INVOKE"))
     private void init(CallbackInfo info) {
         this.title = Text.of(" ");
 
