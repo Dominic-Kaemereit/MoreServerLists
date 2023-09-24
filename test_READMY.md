@@ -1,7 +1,5 @@
 # MoreServerLists Mod
 
-[![Requires Fabric API](https://i.imgur.com/Ol1Tcf8.png)](https://modrinth.com/mod/fabric-api){:height="100px" width="100px"}
-
 ![Mod Version](https://img.shields.io/badge/Mod%20Version-1.0.0-brightgreen)
 ![Minecraft Version](https://img.shields.io/badge/Minecraft%20Version-1.20.2-blue)
 ![Fabric API Version](https://img.shields.io/badge/Fabric%20API-0.14.22-red)
