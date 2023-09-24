@@ -26,6 +26,17 @@ Add as many server lists as you want with MoreServerLists! This Fabric mod allow
 4. Save your changes.
 5. Have fun!
 
+## Images
+
+Config Menu
+![Config Menu](https://raw.githubusercontent.com/D151l/MoreServerLists/1.20/images/config_screen.png)
+
+Default Server List
+![Default Server List](https://raw.githubusercontent.com/D151l/MoreServerLists/1.20/images/servers_list.png)
+
+Second Server List
+![Second Server List](https://raw.githubusercontent.com/D151l/MoreServerLists/1.20/images/second_list.png)
+
 ## Support and Feedback
 
 If you encounter any issues, have suggestions, or want to contribute to the development of MoreServerLists, please [open an issue](https://github.com/D151l/MoreServerLists/issues) on GitHub.
