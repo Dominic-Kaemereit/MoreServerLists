@@ -3,7 +3,7 @@
 	"id": "moreserverlists",
 	"version": "${version}",
 	"name": "More Server Lists",
-	"description": "This mod adds more server lists to the multiplayer menu. You can easily switch between them using the buttons on the left side of the screen.",
+	"description": "Add as many server lists as you want with MoreServerLists! This Fabric mod allows you to expand your Minecraft server list and manage multiple server lists effortlessly.",
 	"authors": [
 		"D151l"
 	],
