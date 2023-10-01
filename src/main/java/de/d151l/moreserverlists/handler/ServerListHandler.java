@@ -103,6 +103,21 @@ public class ServerListHandler {
         this.currentServerList = (String) this.serverLists.keySet().toArray()[searchingIndex];
     }
 
+    public int getServerListIndex() {
+        int index = 1;
+        for (String key : this.serverLists.keySet()) {
+            if (key.equals(this.currentServerList)) {
+                break;
+            }
+            index++;
+        }
+        return index;
+    }
+
+    public int getMaximumServerListIndex() {
+        return this.serverLists.size();
+    }
+
     public String getCurrentServerList() {
         return currentServerList;
     }

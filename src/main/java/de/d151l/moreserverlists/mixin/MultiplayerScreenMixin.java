@@ -20,55 +20,50 @@ public class MultiplayerScreenMixin extends Screen {
     private Screen parent;
 
     private final int arrowWidth = 20;
-    private final int listNameWidth = 130;
-    private final int spaceBetweenListNameAndArrow = 5;
+    private final int listNameWidth = 150;
+    private final int spaceBetweenListNameAndArrow = 3;
     private final int spaceBetweenWindowAndBar = 5;
 
     protected MultiplayerScreenMixin(final Text title) {
         super(title);
     }
 
-    /*@ModifyConstant(
-            method = "<init>",
-            constant = @Constant(stringValue = "multiplayer.title")
-    )
-    private String replaceMultiplayerScreenText(String variable) {
-        return " ";
-    }*/
-
     @Inject(method = "init", at = @At("INVOKE"))
     private void init(CallbackInfo info) {
 
         final int screenWidth = this.width;
         final int center = screenWidth / 2;
-        final int leftCenter = center / 2;
+        //final int leftCenter = center / 2;
 
-        final int barWidth = this.arrowWidth + this.spaceBetweenListNameAndArrow + this.listNameWidth + this.spaceBetweenListNameAndArrow + this.arrowWidth;
+        final int barWidth = this.arrowWidth + this.spaceBetweenListNameAndArrow + this.arrowWidth + this.spaceBetweenListNameAndArrow + this.listNameWidth;
         final int centerBar = barWidth / 2;
 
-        int start = leftCenter - centerBar;
+        //int start = leftCenter - centerBar;
 
         final ButtonWidget arrowLeft = ButtonWidget.builder(Text.of("«"), (buttonWidget) -> {
             MoreServerListsModClient.getInstance().getServerListHandler().previousServerList();
 
             MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
-        }).width(this.arrowWidth).position(start, this.spaceBetweenWindowAndBar).build();
-
-        final String currentServerListName = MoreServerListsModClient.getInstance().getServerListHandler().getCurrentServerListName();
-        final ButtonWidget listName = ButtonWidget.builder(Text.of(currentServerListName), (buttonWidget) -> {
-
-            final ConfigScreen configScreen = new ConfigScreen(parent);
-            MinecraftClient.getInstance().setScreen(configScreen);
-        }).width(this.listNameWidth).position(arrowLeft.getX() + arrowLeft.getWidth() + this.spaceBetweenListNameAndArrow, arrowLeft.getY()).build();
+        }).width(this.arrowWidth).position(this.spaceBetweenWindowAndBar, this.spaceBetweenWindowAndBar).build();
 
         final ButtonWidget arrowRight = ButtonWidget.builder(Text.of("»"), (buttonWidget) -> {
             MoreServerListsModClient.getInstance().getServerListHandler().nextServerList();
 
             MinecraftClient.getInstance().setScreen(new MultiplayerScreen(parent));
-        }).width(this.arrowWidth).position(listName.getX() + listName.getWidth() + this.spaceBetweenListNameAndArrow, listName.getY()).build();
+        }).width(this.arrowWidth).position(arrowLeft.getX() + arrowLeft.getWidth() + this.spaceBetweenListNameAndArrow, arrowLeft.getY()).build();
+
+        final String currentServerListName = MoreServerListsModClient.getInstance().getServerListHandler().getCurrentServerListName();
+        final int serverListIndex = MoreServerListsModClient.getInstance().getServerListHandler().getServerListIndex();
+        final int maximumServerListIndex = MoreServerListsModClient.getInstance().getServerListHandler().getMaximumServerListIndex();
+
+        final ButtonWidget listName = ButtonWidget.builder(Text.of(currentServerListName + " (" + serverListIndex + "/" + maximumServerListIndex + ")"), (buttonWidget) -> {
+
+            final ConfigScreen configScreen = new ConfigScreen(parent);
+            MinecraftClient.getInstance().setScreen(configScreen);
+        }).width(this.listNameWidth).position(arrowRight.getX() + arrowRight.getWidth() + this.spaceBetweenListNameAndArrow, arrowRight.getY()).build();
 
         this.addDrawableChild(arrowLeft);
-        this.addDrawableChild(listName);
         this.addDrawableChild(arrowRight);
+        this.addDrawableChild(listName);
     }
 }
