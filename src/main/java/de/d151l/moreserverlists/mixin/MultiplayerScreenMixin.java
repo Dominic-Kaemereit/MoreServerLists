@@ -9,7 +9,9 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MultiplayerScreen.class)
@@ -26,16 +28,25 @@ public class MultiplayerScreenMixin extends Screen {
         super(title);
     }
 
+    /*@ModifyConstant(
+            method = "<init>",
+            constant = @Constant(stringValue = "multiplayer.title")
+    )
+    private String replaceMultiplayerScreenText(String variable) {
+        return " ";
+    }*/
+
     @Inject(method = "init", at = @At("INVOKE"))
     private void init(CallbackInfo info) {
 
         final int screenWidth = this.width;
         final int center = screenWidth / 2;
+        final int leftCenter = center / 2;
 
         final int barWidth = this.arrowWidth + this.spaceBetweenListNameAndArrow + this.listNameWidth + this.spaceBetweenListNameAndArrow + this.arrowWidth;
         final int centerBar = barWidth / 2;
 
-        int start = center - centerBar;
+        int start = leftCenter - centerBar;
 
         final ButtonWidget arrowLeft = ButtonWidget.builder(Text.of("«"), (buttonWidget) -> {
             MoreServerListsModClient.getInstance().getServerListHandler().previousServerList();
