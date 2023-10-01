@@ -32,10 +32,10 @@ Config Menu
 ![Config Menu](https://raw.githubusercontent.com/D151l/MoreServerLists/1.20/images/config_screen.png)
 
 Default Server List
-![Default Server List](https://raw.githubusercontent.com/D151l/MoreServerLists/1.20/images/servers_list.png)
+![Default Server List](https://raw.githubusercontent.com/D151l/MoreServerLists/1.20/images/default-list.png)
 
-Second Server List
-![Second Server List](https://raw.githubusercontent.com/D151l/MoreServerLists/1.20/images/second_list.png)
+Survival Server List
+![Survival Server List](https://raw.githubusercontent.com/D151l/MoreServerLists/1.20/images/survival-list.png)
 
 ## Support and Feedback
 
